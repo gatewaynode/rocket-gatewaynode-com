@@ -1,0 +1,12 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/highlight-default.css">
+    <script src="/static/js/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </head>
+  <body>
+    {% block content %}
+    {% endblock content %}
+  </body>
+</html>

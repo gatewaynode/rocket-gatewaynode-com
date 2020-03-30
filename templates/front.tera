@@ -1,0 +1,7 @@
+{% extends "base" %}
+
+{% block content %}
+This is a tera template.
+<h1>{{ title }}</h1>
+<p>{{ body }}</p>
+{% endblock content %}
