@@ -1,0 +1,47 @@
+{% extends "base" %}
+
+{% block content %}
+This is the annotated main file I implemented to get this started, it diverges just a little from
+a couple of different tutorials I followed to get things working.
+
+<pre>
+  <code class="rust">
+    #![feature(proc_macro_hygiene, decl_macro)]
+
+    use rocket_contrib::templates::Template; // Its a web app so we should use templates
+    use rocket_contrib::serve::StaticFiles; // Let's us set static paths for files and such
+
+    extern crate rocket_contrib;
+
+    #[macro_use] extern crate rocket; // Our nifty web framework
+    #[macro_use] extern crate serde_derive; // Serialize and Deserialize == Serde
+
+    #[derive(Serialize)] // This is not a decorator it's an attribute...
+    pub struct Post { // Just defines an arbitrary mixed data structure for future use
+        id: i32, // Primitive 32 bit integer
+        title: String, // High level string on the heap
+        body: String, // // High level string on the heap
+    }
+
+    fn main() {
+        rocket::ignite()
+            .attach(Template::fairing()) // Plugin hooks are declared this way in Rocket
+            .mount("/", routes![index])
+            .mount("/static", StaticFiles::from(concat!(env!("CARGO_MANIFEST_DIR"), "/static")))
+            .launch();
+    }
+
+    #[get("/")] // Route attributes
+    fn index() -> Template {
+        let context = Post {
+            id: 0,
+            title: String::from("This"), // Change a primitive string to a heap string
+            body: String::from("works"),
+        };
+        Template::render("front", &context) // Template name and var passed by reference
+    }
+
+  </code>
+</pre>
+
+{% endblock content %}
