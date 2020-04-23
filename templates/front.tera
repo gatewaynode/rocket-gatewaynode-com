@@ -1,6 +1,7 @@
 {% extends "base" %}
 
 {% block content %}
+{{ __tera_context }}
 <div class="article-title">
   <a href="/">
     <p>Adventures in Rust</p>
