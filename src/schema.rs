@@ -1,1 +1,1 @@
-/home/anon/code/nautilus/src/schema.rs
+../../nautilus/src/schema.rs

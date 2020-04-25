@@ -1,114 +1,15 @@
 {% extends "base" %}
 
 {% block content %}
-{{ __tera_context }}
-<div class="article-title">
-  <a href="/">
-    <p>Adventures in Rust</p>
-  </a>
+<!-- __tera_context {{ __tera_context }} So useful, so obscure -->
+<div class="articles-list front">
+  {% for post in posts %}
+    <div class="article id-{{ post.id }} loop-{{ loop.index }}">
+      <div class="title"><h2>{{ post.title }}</h2></div>
+      <div class="time">TS: {{ post.time }}</div>
+      <div class="body">{{ post.body }}</div>
+    </div>
+  {% endfor %}
+<!-- Cause fuck pagers {{ __tera_context }} -->
 </div>
-<div class="article-body">
-  <p>
-    So I recently checked back in on the programming language Rust just to see where it
-    was going and boy was I surprised.  Not only has it really started to take off in
-    terms of new users and projects but the nature of the projects is fantastic.  So
-    switching gears, as I often do, I set myself the goal of learning Rust this year
-    and what better way than hitting the books and mirating my Python powered blog to
-    Rust?
-  </p>
-  <p>
-    I'll document on here as I go and include deeply annotated source code, which maybe
-    will help others but is really just for me to study with.
-  </p>
-</div>
-<div class="article-title">
-  <a href="/">
-    <p>How I found the PinePhone and why this is awesome.</p>
-  </a>
-</div>
-<div class="article-created-date">
-  2020-02-12 21:56:09.149272
-</div>
-<div class="article-body">
-  <p>
-    For over 30 years I've been a *NIX user, and it's been quite the ride.  At first in
-    my teens out of the need to get things working on old hardware back when open source
-    was legally dubious.  To today where I have powerful workstations and clusters in
-    the cloud running Linux that seem capable of just about anything.  But something has
-    always been missing, and I think I finally found that missing piece to the puzzle.
-  </p>
-  <p>
-    The missing piece was truly mobile Linux.  Sure we've had portable computing for
-    quite a while now, from Palm Pilots and Treo's to Androids and iPhones.  But they've
-    never really been yours, you could always jailbreak some of the devices and get root
-    for yourself.  But that's always been just a half way path to real ownership and
-    flexibility.  And the trade offs of one walled garden for a more open walled garden
-    always had it's limits and risks.
-  </p>
-  <p>
-    So in the last couple of years mainstream Linux hardware has really taken off, from
-    dedicated companies for Linux computers like
-    <a href="https://system76.com/">System76</a> to mainstream companies like
-    <a href="https://www.dell.com/en-us/work/shop/overview/cp/linuxsystems">Dell</a>
-    selling a line of certified Linux hardware.  Out of this atmosphere of "it's ok to
-    make Linux only hardware" a community effort known as
-    <a href="https://www.pine64.org/">Pine64</a> seems to have finally produced
-    something that fills that missing piece of the puzzle, the
-    <a href="https://www.pine64.org/pinephone/">PinePhone</a>.  It's a mobile phone, it
-    runs Linux, it boots straight off a micro SD card, and in no way at all does it
-    stand out as a strange phone.
-  </p>
-  <p>
-    The current model that I have is the "Braveheart" edition, which is an early
-    adopters model that is basically finished hardware but unfinished software.  What
-    this means is that while you can load nyone of the half dozen or so Linux
-    distributions, not much is going to work on it.  The most finished distribution is
-    actually Ubuntu Touch, which Cannonical abandoned to community support many years
-    ago.  But even though it's dated and requires a few manual pushes and prods to get
-    working, most core features are working (actual audio of calls over cell networks
-    is still under construction, but calls go through and are sent/received, so almost
-    there).  The really great thing about this is almost all the command line *NIX
-    stuff works beautifully already.  Need a quick NMAP to find a server on your
-    wireless segment?  That works.  Need to host a GIT repository for everyone on the
-    wireless network because the corporate firewall is blocking Github?  That works
-    too.  Want to extract the exif data from a website image while your riding in an
-    elevator?  That works.  Need a quick 10 line HTML website for a quick proof of
-    concept demo during a meeting.  That works.
-  </p>
-  <p>
-    And it's just a smartphone that looks like every other smartphone out there.  And
-    you didn't risk carrier support or bricking your hardware to make it do whatever
-    you want it to do that Linux can do.  I've had mine for about a week and I feel l
-    ike I'm just scratching the surface of where I could take this.  And it's really
-    not ready for your average consumer yet, so many little things don't work or
-    require tinkering. And it's going to take a lot of community volunteer effort to g
-    et the software there.  I'm all in on the effort, and I think there are now enough
-    other folks working on it too that we'll start to see real progress in the months
-    ahead.
-  </p>
-  <p>
-    What is it like to find that thing you were always missing but couldn't quite
-    figure out what it was that you were missing?  It's "<strong>awesome</strong>",
-    that's the word for it.
-  </p>
-</div>
-<div class="article-title">
-  <a href="/">
-    <p>And now I have a CMS</p>
-  </a>
-</div>
-<div class="article-created-date">
-  2020-01-03 20:39:47.700906
-</div>
-<div class="article-body">
-  <p>
-    So after searching quite a bit in the Python ecosystem for a CMS for a project I
-    was working on I got frustrated enough to build my own.  The result is Ochyro, a
-    web CMS designed around building headless content and/or static pages.  I may have
-    over engineered it a quite a bit for basic blogging and such, but this CMS is mine.
-    I've constructed it with all I learned in over a decade of CMS web application
-    development and hopefully it's useful to more people than just myself.
-  </p>
-</div>
-
 {% endblock content %}

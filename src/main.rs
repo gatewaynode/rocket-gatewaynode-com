@@ -8,8 +8,6 @@ use rocket_contrib::templates::Template;
 use rocket_contrib::serve::StaticFiles;
 use rocket_gatewaynode_com::*;
 use rocket_gatewaynode_com::models::{Post};
-use tera::Context;
-use std::collections::HashMap;
 
 #[macro_use] extern crate rocket;
 #[macro_use] extern crate serde_derive;
@@ -25,10 +23,11 @@ fn main() {
 
 #[get("/")]
 fn index() -> Template {
-    let all_posts: Vec<Post> = read_all_posts();
-    let mut serialized = HashMap::new();
-    for post in all_posts {
-        serialized.insert(format!("post-{}", &post.id), post);
-    }
-    Template::render("front", &serialized)
+    #[derive(Serialize, Deserialize, Debug)]
+    struct PostList { posts: Vec<Post>, }
+
+    let all_posts_raw = read_all_posts();
+    let all_posts = PostList{ posts: all_posts_raw };
+
+    Template::render("front", &all_posts)
 }

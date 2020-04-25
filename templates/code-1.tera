@@ -1,8 +1,7 @@
 {% extends "base" %}
 
 {% block content %}
-This is the annotated main file I implemented to get this started, it diverges just a little from
-a couple of different tutorials I followed to get things working.
+This is the annotated main file I implemented to get this started, it diverges just a little from a couple of different tutorials I followed to get things working.  I've added some excessive comments to help annotate how I think things work.
 
 <pre>
   <code class="rust">
@@ -27,7 +26,7 @@ a couple of different tutorials I followed to get things working.
         rocket::ignite()
             .attach(Template::fairing()) // Plugin hooks are declared this way in Rocket
             .mount("/", routes![index])
-            .mount("/static", StaticFiles::from(concat!(env!("CARGO_MANIFEST_DIR"), "/static")))
+            .mount("/static", StaticFiles::from(concat!(env!("CARGO_MANIFEST_DIR"), "/static")))  // This let's us load static resources like css, js and images
             .launch();
     }
 

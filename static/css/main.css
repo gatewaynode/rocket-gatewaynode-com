@@ -1,0 +1,74 @@
+/*  Thingies  ============================================================================= */
+
+body {
+  color: #07de67;
+  background-color: #0A0A0A;
+  background-image: url("/static/images/geometric-1732847_1920_rotated_darkened.png");
+}
+body h1 {
+  font-size: 2em;
+}
+body h2 {
+  font-size: 1.25em;
+}
+body .section.group.nav {
+  border-top: 2px  dashed green;
+  border-bottom: 2px dashed green;
+}
+body nav {
+}
+body nav ul {
+  list-style: none;
+}
+body nav ul.top-nav {
+  display: inline-block;
+  width: 100%;
+}
+body nav ul.top-nav>li {
+  display: inline-block;
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-top: .5em;
+}
+
+body .col.span_1_of_3.sidebar {
+  border-left: 2px dashed green;
+}
+
+body p {
+  background-color: rgba(0, 0, 0, .2)
+}
+
+.article>.title>h2 {
+  margin-bottom: .3em;
+  text-decoration: underline;
+}
+.article>.body {
+  margin-bottom: 1.25em;
+}
+
+.header>.section {
+  margin-left: 0;
+}
+.header,
+.section {
+  margin-left: 2em;
+}
+.time {
+  font-size: .8em;
+}
+
+.sidebar {
+  padding-left: 2em;
+}
+
+/* Highlight JS overrides and helpers */
+body .hljs-comment {
+  color: GreenYellow;
+}
+body .hljs-string {
+  color: Khaki;
+}
+.code-wrapper {
+  margin-bottom: 1.5em;
+}

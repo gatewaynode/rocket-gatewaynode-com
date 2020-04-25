@@ -1,12 +1,85 @@
 <!doctype html>
 <html>
   <head>
+    <meta charset="utf-8">
+  	<!-- Always force latest IE rendering engine & Chrome Frame -->
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  	<title>Gatewaynode.com</title>
+
+  	<meta name="description" content="Gatewaynode's public website for blogging, tutorials and such.">
+  	<meta name="keywords" content="rust, python, bash, linux, appsec, cloudsec, crypto">
+  	<meta name="author" content="Gatewaynode">
+  	<meta http-equiv="cleartype" content="on">
+
+  	<link rel="shortcut icon" href="/favicon.ico">
+    <!-- Responsive and mobile friendly stuff -->
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/static/css/html5reset.css" media="all">
+    <link rel="stylesheet" href="/static/css/col.css" media="all">
+    <link rel="stylesheet" href="/static/css/2cols.css" media="all">
+    <link rel="stylesheet" href="/static/css/3cols.css" media="all">
+    <link rel="stylesheet" href="/static/css/4cols.css" media="all">
+    <link rel="stylesheet" href="/static/css/5cols.css" media="all">
+    <link rel="stylesheet" href="/static/css/6cols.css" media="all">
+    <link rel="stylesheet" href="/static/css/7cols.css" media="all">
+    <link rel="stylesheet" href="/static/css/8cols.css" media="all">
+    <link rel="stylesheet" href="/static/css/9cols.css" media="all">
+    <link rel="stylesheet" href="/static/css/10cols.css" media="all">
+    <link rel="stylesheet" href="/static/css/11cols.css" media="all">
+    <link rel="stylesheet" href="/static/css/12cols.css" media="all">
     <link rel="stylesheet" href="/static/css/highlight-default.min.css">
+    <link rel="stylesheet" href="/static/css/terminal.min.css">
+
+    <link rel="stylesheet" href="/static/css/main.css">
+
     <script src="/static/js/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
   </head>
   <body>
-    {% block content %}
-    {% endblock content %}
+    <div class="header">
+		<h1>GATEWAYNODE</h1>
+    <div class="section group nav">
+      <div class="col span_1_of_1">
+        <nav id="nav">
+          <ul class="top-nav">
+            <li><a href="/" title="Main Page">Home</a></li>
+            <li><a href="/" title="Really just my notes and semi-tutorials on how I built this blog.">Learning Rust</a></li>
+            <li><a href="https://github.com/gatewaynode" title="Some stuff I'm working on in Github.">Github</a></li>
+            <li><a href="https://www.reddit.com/user/gatewaynode" title="The closest thing to a social media presence I have.">Reddit</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+		</div>
+    <div class="section group main">
+      <div class="col span_2_of_3">
+        {% block content %}
+        {% endblock content %}
+      </div>
+      <div class="col span_1_of_3 sidebar">
+        <h2>Links I Find Interesting Regularly</h2>
+        <ul>
+          <li><a href="https://slashdot.org/">Slashdot</a></li>
+          <li><a href="https://arstechnica.com/">Ars Technica</a></li>
+          <li><a href="https://news.ycombinator.com/">Hacker News</a></li>
+          <li><a href="https://lobste.rs/">Not about lobsters</a></li>
+          <li><a href="https://phys.org/">Science Watch</a></li>
+        </ul>
+        <h2>Specific Thingies</h2>
+        <ul>
+          <li><a href="https://ubuntu.com/">Can an LTS release be sexy?</a></li>
+          <li><a href="https://builtin.com/software-engineering-perspectives/lean-agile-methodology-software-engineering">Well duh...</a></li>
+          <li><a href="https://protonmail.com/blog/android-open-source/">Open Source is the best Source</a></li>
+          <li><a href="https://medium.com/ki-labs-engineering/chaining-serverless-functions-for-stateful-workflows-aws-step-functions-using-adapter-pattern-9edb0db7b35e">Adapter Pattern in AWS</a></li>
+          <li><a href="http://www.blacktigersexmachine.com/">Insert Into Ears</a></li>
+        </ul>
+      </div>
+    </div>
+
   </body>
 </html>
