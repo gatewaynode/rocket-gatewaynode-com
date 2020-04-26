@@ -22,15 +22,6 @@
     <link rel="stylesheet" href="/static/css/col.css" media="all">
     <link rel="stylesheet" href="/static/css/2cols.css" media="all">
     <link rel="stylesheet" href="/static/css/3cols.css" media="all">
-    <link rel="stylesheet" href="/static/css/4cols.css" media="all">
-    <link rel="stylesheet" href="/static/css/5cols.css" media="all">
-    <link rel="stylesheet" href="/static/css/6cols.css" media="all">
-    <link rel="stylesheet" href="/static/css/7cols.css" media="all">
-    <link rel="stylesheet" href="/static/css/8cols.css" media="all">
-    <link rel="stylesheet" href="/static/css/9cols.css" media="all">
-    <link rel="stylesheet" href="/static/css/10cols.css" media="all">
-    <link rel="stylesheet" href="/static/css/11cols.css" media="all">
-    <link rel="stylesheet" href="/static/css/12cols.css" media="all">
     <link rel="stylesheet" href="/static/css/highlight-default.min.css">
     <link rel="stylesheet" href="/static/css/terminal.min.css">
 
@@ -62,24 +53,11 @@
         {% endblock content %}
       </div>
       <div class="col span_1_of_3 sidebar">
-        <h2>Links I Find Interesting Regularly</h2>
-        <ul>
-          <li><a href="https://slashdot.org/">Slashdot</a></li>
-          <li><a href="https://arstechnica.com/">Ars Technica</a></li>
-          <li><a href="https://news.ycombinator.com/">Hacker News</a></li>
-          <li><a href="https://lobste.rs/">Not about lobsters</a></li>
-          <li><a href="https://phys.org/">Science Watch</a></li>
-        </ul>
-        <h2>Specific Thingies</h2>
-        <ul>
-          <li><a href="https://ubuntu.com/">Can an LTS release be sexy?</a></li>
-          <li><a href="https://builtin.com/software-engineering-perspectives/lean-agile-methodology-software-engineering">Well duh...</a></li>
-          <li><a href="https://protonmail.com/blog/android-open-source/">Open Source is the best Source</a></li>
-          <li><a href="https://medium.com/ki-labs-engineering/chaining-serverless-functions-for-stateful-workflows-aws-step-functions-using-adapter-pattern-9edb0db7b35e">Adapter Pattern in AWS</a></li>
-          <li><a href="http://www.blacktigersexmachine.com/">Insert Into Ears</a></li>
-        </ul>
+        {% block right_sidebar %}
+        {% endblock right_sidebar %}
       </div>
     </div>
-
+    <!-- Footer goes here -->
+    <!-- __tera_context {{ __tera_context }} So useful, so obscure -->
   </body>
 </html>

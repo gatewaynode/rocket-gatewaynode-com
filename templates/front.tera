@@ -1,7 +1,6 @@
 {% extends "base" %}
 
 {% block content %}
-<!-- __tera_context {{ __tera_context }} So useful, so obscure -->
 <div class="articles-list front">
   {% for post in posts %}
     <div class="article id-{{ post.id }} loop-{{ loop.index }}">
@@ -10,6 +9,26 @@
       <div class="body">{{ post.body }}</div>
     </div>
   {% endfor %}
-<!-- Cause fuck pagers {{ __tera_context }} -->
 </div>
 {% endblock content %}
+{% block right_sidebar %}
+<h2>Links I Find Interesting Regularly</h2>
+<ul>
+  {% for link in regular_links %}
+    <li><a href="{{ link.url }}" title="{{ link.title }}">{{ link.text }}</a></li>
+  {% endfor %}
+</ul>
+<h2>Specific Thingies</h2>
+<ul>
+{% for link in thingy_links %}
+  <li><a href="{{ link.url }}" title="{{ link.title }}">{{ link.text }}</a></li>
+{% endfor %}
+</ul>
+<h2>Recent Tutorial Grinding</h2>
+<ul>
+{% for link in tut_links %}
+  <li><a href="{{ link.url }}" title="{{ link.title }}">{{ link.text }}</a></li>
+{% endfor %}
+</ul>
+<!-- All links link goes here -->
+{% endblock right_sidebar %}

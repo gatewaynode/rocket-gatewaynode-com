@@ -34,7 +34,8 @@ body nav ul.top-nav>li {
 body .col.span_1_of_3.sidebar {
   border-left: 2px dashed green;
 }
-
+ul li,
+ol li,
 body p {
   background-color: rgba(0, 0, 0, .2)
 }
@@ -57,18 +58,42 @@ body p {
 .time {
   font-size: .8em;
 }
-
 .sidebar {
   padding-left: 2em;
 }
 
 /* Highlight JS overrides and helpers */
 body .hljs-comment {
-  color: GreenYellow;
+  color: #999999;
 }
 body .hljs-string {
-  color: Khaki;
+  color: DarkOrange;
+}
+body .hljs-number {
+  color: Magenta;
+}
+body .hljs-keyword {
+  color: DarkTurquoise;
+}
+body .hljs-title {
+  color: DarkOrange;
+}
+body .hljs-built_in {
+  color: Gold;
+}
+body .hljs-tag {
+  color: GoldenRod;
+}
+body .hljs-name {
+  color: Lime;
 }
 .code-wrapper {
   margin-bottom: 1.5em;
+}
+.code-wrapper>pre {
+  background-color: #252525;
+  color: LightSkyBlue;
+}
+.code-wrapper>pre>code {
+  color: LightSkyBlue;
 }
