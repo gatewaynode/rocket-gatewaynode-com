@@ -1,0 +1,13 @@
+{% extends "base" %}
+
+{% block content %}
+  <div class="article-page back">
+    <div class="title"><h2>{{ title }}</h2></div>
+    <div class="time">TS: {{ time }}</div>
+    <div class="tags">Tags: {{ tags }}</div>
+    <div class="body">{{ body }}</div>
+</div>
+{% endblock content %}
+{% block right_sidebar %}
+This is a sidebar with nothing in it yet.
+{% endblock right_sidebar %}

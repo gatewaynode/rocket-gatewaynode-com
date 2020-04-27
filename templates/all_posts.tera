@@ -1,0 +1,21 @@
+{% extends "base" %}
+
+{% block content %}
+<div class="articles-list back">
+  <h2>All the articles summarized in one page because, why not?</h2>
+  {% for post in posts %}
+    <div class="article id-{{ post.id }} loop-{{ loop.index % 2 }}">
+      <div class="title">
+        <h3>
+          <a href="/post/{{ post.id }}" title="Link to full post content">{{ post.title }}</a>
+        </h3>
+      </div>
+      <div class="time">TS: {{ post.time }}</div>
+      <div class="tags">Tags: {{post.tags }}</div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock content %}
+{% block right_sidebar %}
+This is a sidebar with nothing in it yet.
+{% endblock right_sidebar %}

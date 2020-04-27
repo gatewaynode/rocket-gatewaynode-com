@@ -4,7 +4,11 @@
 <div class="articles-list front">
   {% for post in posts %}
     <div class="article id-{{ post.id }} loop-{{ loop.index }}">
-      <div class="title"><h2>{{ post.title }}</h2></div>
+      <div class="title">
+        <h2>
+          <a href="/post/{{ post.id }}">{{ post.title }}</a>
+        </h2>
+      </div>
       <div class="time">TS: {{ post.time }}</div>
       <div class="body">{{ post.body }}</div>
     </div>
