@@ -1,0 +1,21 @@
+{% extends "base" %}
+
+{% block content %}
+<div class="links-list back">
+  <h2>Surely their is a reason for these long summary pages?</h2>
+  {% for link in links %}
+    <div class="link id-{{ link.id }} loop-{{ loop.index % 2 }}">
+      <div class="link-full">
+        <b>
+          <a href="{{ link.url }}" title="{{ link.title }}">{{ link.text }}</a>
+        </b>
+      </div>
+      <div class="raw-url">{{ link.url }}</div>
+      <div class="tags">Tags: {{ link.tags }}</div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock content %}
+{% block right_sidebar %}
+This is a sidebar with nothing in it yet.
+{% endblock right_sidebar %}
