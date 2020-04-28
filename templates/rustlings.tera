@@ -7,7 +7,7 @@
     <div class="article id-{{ post.id }} loop-{{ loop.index }}">
       <div class="title">
         <h3>
-          <a href="/post/{{ post.id }}">{{ post.title }}</a>
+          <a href="/post/{{ post.id }}">{{ post.title }}</a><a name="anchor-{{ post.id }}"></a>
         </h3>
       </div>
       <div class="time">TS: {{ post.time }}</div>
@@ -17,5 +17,27 @@
 </div>
 {% endblock content %}
 {% block right_sidebar %}
-This is a sidebar with nothing in it yet.
+<div class="topics-sidebar">
+  <h2>Rust Topics</h2>
+  <ul>
+    <li><h4>Rocket Web Framework</h4>
+      <dl>
+        <dt><a href="#anchor-4">Diving into Rocket</a></dt>
+        <dd><i>A simple traditional web page written with Rust and Rocket.</i></dd>
+      </dl>
+    </li>
+    <li><h4>Command Line</h4>
+      <dl>
+        <dt><a href="#anchor-5">Rustyline</a></dt>
+        <dd>Prompt and input made clean and easy.</dd>
+      </dl>
+    </li>
+    <li><h4>Diesel ORM</h4>
+      <dl>
+        <dt><a href="#anchor-6">Filter to find things</a></dt>
+        <dd>Search anywhere within a field for a given pattern.</dd>
+      </dl>
+    </li>
+  </ul>
+</div>
 {% endblock right_sidebar %}

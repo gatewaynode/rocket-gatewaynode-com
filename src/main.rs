@@ -36,7 +36,7 @@ struct LinkContentList {
 fn main() {
     rocket::ignite()
         .attach(Template::fairing())
-        .mount("/", routes![index, list_all_posts, a_post, list_all_links, list_rust_posts, list_python_posts])
+        .mount("/", routes![index, list_all_posts, a_post, list_all_links, list_rust_posts, list_python_posts, list_bash_posts])
         .mount("/static", StaticFiles::from(concat!(env!("CARGO_MANIFEST_DIR"), "/static")))
         .launch();
 }
@@ -96,4 +96,12 @@ fn list_python_posts() -> Template {
         posts: read_posts_by_filter_limit(String::from("python"), 999),
     };
     Template::render("snakes", &snakes)
+}
+
+#[get("/bash")]
+fn list_bash_posts() -> Template {
+    let shells = PostContentList {
+        posts: read_posts_by_filter_limit(String::from("bash"), 999),
+    };
+    Template::render("shells", &shells)
 }

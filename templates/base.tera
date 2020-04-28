@@ -42,6 +42,7 @@
               <li><a href="/links" title="All Links">Links</a></li>
               <li><a href="/rust" title="Really just my notes and semi-tutorials on how I built this blog.">Rust</a></li>
               <li><a href="/python" title="Not focused on this much right now...">Python</a></li>
+              <li><a href="/bash" title="Even is a world gone completely mad, bash will get things done.">Bash</a></li>
               <li><a href="https://github.com/gatewaynode" title="Some stuff I'm working on in Github.">Github</a></li>
               <li><a href="https://www.reddit.com/user/gatewaynode" title="The closest thing to a social media presence I have.">Reddit</a></li>
             </ul>
@@ -67,7 +68,7 @@
       </div>
       <div class="col span_1_of_5">
         <div class="quote me">
-          "Sometimes I think kids must be nuclear powered, <i>there is no other way to explain that sheer energy density</i>.  Well maybe <b>antimatter</b> would explain it, but then they'd just be exploding all over the place in high energy annihilation events."" - me
+          "Sometimes I think kids must be nuclear powered, <i>there is no other way to explain that sheer energy density</i>.  Well maybe <b>antimatter</b> would explain it, but then they'd just be exploding all over the place in high energy annihilation events." - me
         </div>
       </div>
       <div class="col span_1_of_5"><b>&copy; 2020 Gatewaynode</b></div>

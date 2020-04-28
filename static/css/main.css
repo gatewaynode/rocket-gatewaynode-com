@@ -34,6 +34,12 @@ body h3 {
   font-size: 1.25em;
 }
 
+body h4 {
+  font-size: 1.25em;
+  margin-top: .25em;
+  margin-bottom: .25em;
+}
+
 body .section.group.nav {
   border-top: 2px  dashed green;
   border-bottom: 2px dashed green;
@@ -104,6 +110,25 @@ body .footer div {
 }
 .links-list .link {
   margin-bottom: .3em;
+}
+body .topics-sidebar {
+  background-color: rgba(0, 0, 0, .2);
+}
+
+dl dt {
+  text-decoration: underline;
+}
+dl dd {
+  margin-left: .4em;
+  font-style: oblique;
+}
+body .time {
+  margin-bottom: .2em;
+  border-bottom: 1px dotted green;
+}
+body .articles-list.back .title h3 {
+  margin-bottom: .2em;
+  margin-top: .5em;
 }
 
 /* Highlight JS overrides and helpers */
