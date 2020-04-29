@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="intro"><h2>Just some snake things...</h2></div>
-<div class="articles-list back">
+<div class="articles-list topics">
   {% for post in posts %}
     <div class="article id-{{ post.id }} loop-{{ loop.index }}">
       <div class="title">
@@ -18,14 +18,12 @@
 {% endblock content %}
 {% block right_sidebar %}
 <div class="topics-sidebar">
-  <h2>Python Topics</h2>
-  <ul>
-    <li><h4>Flask Web Framework</h4>
-      <dl>
-        <dt><a href="#anchor-1">And now I have a CMS</a></dt>
-        <dd>Well, Flask, SQL Alchemy and an overbuilt data model at least.</dd>
-      </dl>
-    </li>
-  </ul>
+  <h2> Python Topics {{ posts | length }}</h2>
+    <dl>
+      {% for post in posts %}
+        <dt><a href="#anchor-{{ post.id }}">{{ post.title | truncate(length=50) }}</a></dt>
+        <dd><i>{{ post.summary }}</a></dd>
+      {% endfor %}
+    </dl>
 </div>
 {% endblock right_sidebar %}
