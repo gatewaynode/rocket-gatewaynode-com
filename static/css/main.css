@@ -147,6 +147,14 @@ body .intro h2 .intro-subtitle {
   font-style: oblique;
 }
 
+body .bottom-flourish {
+  background-image: url("/static/images/techno_flourishes.svg");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: contain;
+  padding-bottom: 12em;
+}
+
 /* Highlight JS overrides and helpers */
 body .hljs-comment {
   color: #999999;
