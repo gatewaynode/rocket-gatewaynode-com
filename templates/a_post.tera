@@ -6,7 +6,19 @@
     <div class="time">TS: {{ time }}</div>
     <div class="tags">Tags: {{ tags }}</div>
     <div class="body">{{ body }}</div>
-</div>
+    <div class="comments">
+      <h4>Comments</h4>
+      <div class="disclaimer">
+        This blog ain't ready for dirty, dirty user input yet.  Feel free to
+        comment on the subreddit, I'll get around to reading it.
+      </div>
+      <div class="reddit-link">
+        <a href="{{ comment_url }}" title="Linked subreddit">Goto Reddit</a>
+      </div>
+    </div>
+  </div>
+  <!-- __tera_context {{ __tera_context }} So useful, so obscure -->
+
 {% endblock content %}
 {% block right_sidebar %}
 This is a sidebar with nothing in it yet.

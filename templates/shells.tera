@@ -1,8 +1,9 @@
 {% extends "base" %}
 
 {% block content %}
-<div class="intro"><h2>CLI Kung Fu, *Nix, terminals, and inodes.</h2></div>
-<div class="articles-list back">
+<div class="intro"><h2>CLI Kung Fu, *Nix, terminals, and inodes.<div class="intro-subtitle"><i>Cloud is included cause that's just how your supposed to be doing things now.</i></div></h2></div>
+
+<div class="articles-list topics">
   {% for post in posts %}
     <div class="article id-{{ post.id }} loop-{{ loop.index }}">
       <div class="title">
