@@ -147,6 +147,29 @@ body .intro h2 .intro-subtitle {
   font-style: oblique;
 }
 
+body div.bottom-flourish {
+  background-image: url("/static/images/techno_flourishes.svg");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: contain;
+  padding-top: 8em;
+}
+
+/* Special Effects */
+div.rotate-image {
+  padding: 16% 16% 16% 16%;
+}
+.rotate-image img:hover,
+.rotate-image img:focus,
+.rotate-image img:active {
+    -webkit-animation:spin 4s linear infinite;
+    -moz-animation:spin 4s linear infinite;
+    animation:spin 4s linear infinite;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
 /* Highlight JS overrides and helpers */
 body .hljs-comment {
   color: #999999;

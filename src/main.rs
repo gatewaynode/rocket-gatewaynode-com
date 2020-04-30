@@ -13,7 +13,7 @@ use rocket_gatewaynode_com::models::{Post, Link};
 #[macro_use] extern crate serde_derive;
 
 /// A simple implementation of Rocket for a personal blog.  Database content managed by https://github.com/gatewaynode/nautilus
-///
+/// <!-- __tera_context {{ __tera_context }} So useful, so obscure -->
 
 #[derive(Serialize, Deserialize, Debug)]
 struct GeneralContentList {
