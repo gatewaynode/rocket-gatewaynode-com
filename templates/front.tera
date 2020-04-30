@@ -12,6 +12,7 @@
       <div class="time">TS: {{ post.time }}</div>
       <div class="body">{{ post.body }}</div>
     </div>
+    <div class="bottom-flourish"></div>
   {% endfor %}
 </div>
 {% endblock content %}
