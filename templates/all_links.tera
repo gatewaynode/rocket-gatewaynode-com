@@ -17,5 +17,6 @@
 </div>
 {% endblock content %}
 {% block right_sidebar %}
-This is a sidebar with nothing in it yet.
+Mouse hover or touch to make the gear spin.
+<div class="rotate-image"><img src="/static/images/gear-145315.svg"></div>
 {% endblock right_sidebar %}

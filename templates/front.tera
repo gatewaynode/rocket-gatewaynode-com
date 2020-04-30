@@ -25,13 +25,13 @@
 </ul>
 <h2>Specific Thingies</h2>
 <ul>
-{% for link in thingy_links %}
+{% for link in thingy_links | reverse %}
   <li><a href="{{ link.url }}" title="{{ link.title }}">{{ link.text }}</a></li>
 {% endfor %}
 </ul>
 <h2>Recent Tutorial Grinding</h2>
 <ul>
-{% for link in tut_links %}
+{% for link in tut_links | reverse %}
   <li><a href="{{ link.url }}" title="{{ link.title }}">{{ link.text }}</a></li>
 {% endfor %}
 </ul>
