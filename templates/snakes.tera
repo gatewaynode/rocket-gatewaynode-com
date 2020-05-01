@@ -12,6 +12,7 @@
       </div>
       <div class="time">TS: {{ post.time }}</div>
       <div class="body">{{ post.body }}</div>
+      <div class="bottom-flourish"></div>
     </div>
   {% endfor %}
 </div>
@@ -21,7 +22,7 @@
   <h2> Python Topics {{ posts | length }}</h2>
     <dl>
       {% for post in posts %}
-        <dt><a href="#anchor-{{ post.id }}">{{ post.title | truncate(length=50) }}</a></dt>
+        <dt><a href="#anchor-{{ post.id }}">{{ post.title | truncate(length=40) }}</a></dt>
         <dd><i>{{ post.summary }}</a></dd>
       {% endfor %}
     </dl>

@@ -13,20 +13,19 @@
       </div>
       <div class="time">TS: {{ post.time }}</div>
       <div class="body">{{ post.body }}</div>
+      <div class="bottom-flourish"></div>
     </div>
   {% endfor %}
 </div>
 {% endblock content %}
 {% block right_sidebar %}
 <div class="topics-sidebar">
-  <h2>Bash Topics</h2>
-  <ul>
-    <li><h4>Publishing a Dynamic Website Statically</h4>
-      <dl>
-        <dt><a href="#anchor-7">Publishing a Dynamic Website Statically</a></dt>
-        <dd>A simple shell script to move your local site to AWS.</dd>
-      </dl>
-    </li>
-  </ul>
+  <h2> Shell Topics {{ posts | length }}</h2>
+    <dl>
+      {% for post in posts %}
+        <dt><a href="#anchor-{{ post.id }}">{{ post.title | truncate(length=40) }}</a></dt>
+        <dd><i>{{ post.summary }}</a></dd>
+      {% endfor %}
+    </dl>
 </div>
 {% endblock right_sidebar %}
