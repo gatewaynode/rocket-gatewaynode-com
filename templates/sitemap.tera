@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://gatewaynode.com/</loc>
+    <lastmod>"{{ posts[0].time | truncate(length=10, end='') }}"</lastmod>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://gatewaynode.com/posts</loc>
+    <lastmod>"{{ posts[0].time | truncate(length=10, end='') }}"</lastmod>
+    <changefreq>weekly/changefreq>
+  </url>
+  <url>
+    <loc>https://gatewaynode.com/links</loc>
+    <lastmod>"{{ posts[0].time | truncate(length=10, end='') }}"</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://gatewaynode.com/rust</loc>
+    <lastmod>"{{ posts[0].time | truncate(length=10, end='') }}"</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://gatewaynode.com/python</loc>
+    <lastmod>"{{ posts[0].time | truncate(length=10, end='') }}"</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://gatewaynode.com/bash</loc>
+    <lastmod>"{{ posts[0].time | truncate(length=10, end='') }}"</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+{% for post in posts %}  <url>
+    <loc>https://gatewaynode.com/post/{{ post.id }}</loc>
+    <lastmod>"{{ post.time | truncate(length=10, end='') }}"</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>{% endfor %}
+</urlset>

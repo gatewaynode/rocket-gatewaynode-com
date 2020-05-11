@@ -6,6 +6,7 @@ extern crate tera;
 
 use rocket_contrib::templates::Template;
 use rocket_contrib::serve::StaticFiles;
+use rocket::response::Redirect;
 use rocket_gatewaynode_com::*;
 use rocket_gatewaynode_com::models::{Post, Link};
 
@@ -36,7 +37,18 @@ struct LinkContentList {
 fn main() {
     rocket::ignite()
         .attach(Template::fairing())
-        .mount("/", routes![index, list_all_posts, a_post, list_all_links, list_rust_posts, list_python_posts, list_bash_posts])
+        .mount("/", routes![
+            index,
+            favicon,
+            list_all_posts,
+            a_post,
+            list_all_links,
+            list_rust_posts,
+            list_python_posts,
+            list_bash_posts,
+            generate_sitemap,
+            let_the_robots_free
+        ])
         .mount("/static", StaticFiles::from(concat!(env!("CARGO_MANIFEST_DIR"), "/static")))
         .launch();
 }
@@ -47,6 +59,7 @@ fn index() -> Template {
     let regular_links_raw = read_links_by_filter_limit(String::from("regular"), 10);
     let thingy_links_raw = read_links_by_filter_limit(String::from("thingy"), 10);
     let tut_links_raw = read_links_by_filter_limit(String::from("tut"), 10);
+
     let all_posts = GeneralContentList{
         posts: all_posts_raw,
         regular_links: regular_links_raw,
@@ -55,6 +68,11 @@ fn index() -> Template {
     };
 
     Template::render("front", &all_posts)
+}
+
+#[get("/favicon.ico")]
+fn favicon() -> Redirect {
+    Redirect::permanent("/static/images/favicon.ico")
 }
 
 #[get("/posts")]
@@ -104,4 +122,20 @@ fn list_bash_posts() -> Template {
         posts: read_posts_by_filter_limit(String::from("bash"), 999),
     };
     Template::render("shells", &shells)
+}
+
+#[get("/sitemap.xml")]
+fn generate_sitemap() -> Template {
+    let all_posts = PostContentList{
+        posts: read_all_posts(),
+    };
+    Template::render("sitemap", &all_posts)
+}
+
+#[get("/robots.txt")]
+fn let_the_robots_free() -> String {
+    String::from("User-agents: *
+Allow: *
+
+Sitemap: https://gatewaynode.com/sitemap.xml")
 }

@@ -82,6 +82,12 @@
           <i>“Arguing with anonymous strangers on the Internet is a sucker's game because they almost always turn out to be—or to be indistinguishable from—self-righteous sixteen-year-olds possessing infinite amounts of free time.”</i> - Neal Stephenson, Cryptonomicon .
         </div>
       </div>
+      <div class="footer disclosure">
+        Disclosure: Privacy focused web analytics provided by <a href="https://usefathom.com">Fathom</a>
+        <!-- Fathom - beautiful, simple website analytics -->
+          <script src="https://cdn.usefathom.com/3.js" site="ISKOXPBE"></script>
+        <!-- / Fathom -->
+      </div>
     </div>
   </body>
 </html>
