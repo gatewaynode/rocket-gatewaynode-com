@@ -4,14 +4,11 @@
     <meta charset="utf-8">
   	<!-- Always force latest IE rendering engine & Chrome Frame -->
   	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
   	<title>Gatewaynode.com</title>
-
   	<meta name="description" content="Gatewaynode's public website for blogging, tutorials and such.">
   	<meta name="keywords" content="rust, python, bash, linux, appsec, cloudsec, crypto">
   	<meta name="author" content="Gatewaynode">
   	<meta http-equiv="cleartype" content="on">
-
   	<link rel="shortcut icon" href="/favicon.ico">
     <!-- Responsive and mobile friendly stuff -->
     <meta name="HandheldFriendly" content="True">
@@ -25,9 +22,8 @@
     <link rel="stylesheet" href="/static/css/5cols.css" media="all">
     <link rel="stylesheet" href="/static/css/highlight-default.min.css">
     <link rel="stylesheet" href="/static/css/terminal.min.css">
-
     <link rel="stylesheet" href="/static/css/main.css">
-
+    <link href="/static/css/tabulator.min.css" rel="stylesheet">
     <script src="/static/js/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
   </head>
@@ -38,49 +34,62 @@
         <div class="col span_1_of_1">
           <nav id="nav">
             <ul class="top-nav">
-              <li><a href="/posts" title="All Content">Content</a></li>
-              <li><a href="/links" title="All Links">Links</a></li>
-              <li><a href="/rust" title="Really just my notes and semi-tutorials on how I built this blog.">Rust</a></li>
-              <li><a href="/python" title="Not focused on this much right now...">Python</a></li>
-              <li><a href="/bash" title="Even is a world gone completely mad, bash will get things done.">Bash</a></li>
-              <li><a href="https://github.com/gatewaynode" title="Some stuff I'm working on in Github.">Github</a></li>
-              <li><a href="https://www.reddit.com/user/gatewaynode" title="The closest thing to a social media presence I have.">Reddit</a></li>
+              <li><h2><a href="/posts" title="All Content">Content</a></h2></li>
+              <li><h2><a href="/links" title="All Links">Links</a></h2></li>
+              <li><h2><a href="/rust" title="Really just my notes and semi-tutorials on how I built this blog.">Rust</a></h2></li>
+              <li><h2><a href="/python" title="Not focused on this much right now...">Python</a></h2></li>
+              <li><h2><a href="/bash" title="Even is a world gone completely mad, bash will get things done.">Bash</a></h2></li>
+              <!-- <li><h2><a href="https://github.com/gatewaynode" title="Some stuff I'm working on in Github." rel="external">Github</a></h2></li>
+              <li><h2><a href="https://www.reddit.com/user/gatewaynode" title="The closest thing to a social media presence I have." rel="external">Reddit</a></h2></li> -->
             </ul>
           </nav>
         </div>
       </div>
 		</div>
-
     <div class="section group main">
-      <div class="col span_2_of_3">
-        {% block content %}
-        {% endblock content %}
+      <div class="col span_2_of_3 main-column" id="primary-column">
+        {% block content %}{% endblock content %}
       </div>
-      <div class="col span_1_of_3 sidebar">
-        {% block right_sidebar %}
-        {% endblock right_sidebar %}
+      <div class="col span_1_of_3 sidebar" id="secondary-column">
+        {% block right_sidebar %}{% endblock right_sidebar %}
       </div>
     </div>
     <div class="section group"></div>
     <div class="section group footer">
-      <div class="col span_1_of_5">
-        <i>"So much code in the world and so many flaws, at least I'll never be without a challenge."</i> - me
-      </div>
-      <div class="col span_1_of_5">
-        <div class="quote me">
-          "Sometimes I think kids must be nuclear powered, <i>there is no other way to explain that sheer energy density</i>.  Well maybe <b>antimatter</b> would explain it, but then they'd just be exploding all over the place in high energy annihilation events." - me
+      <div class="col col-1 span_1_of_5">
+        <div class="footer disclosure">
+          <p>
+            <b>Privacy Disclosure:</b> This site uses no web analytics or cookies explicitly, but the commenting system (<a href="https://commento.io">commento</a>) has some basic privacy respecting analytics on the individual article sub-pages.  Signing into the comments with the 3rd party integrations(Google, Github...) will of course open you up to their tracking.  Anonymous comments are allowed in response to this, with just that minimal set of analytics Commento collects.
+          </p>
         </div>
       </div>
-      <div class="col span_1_of_5"><b>&copy; 2020 Gatewaynode</b></div>
-      <div class="col span_1_of_5">
-        <div class="quote me">
-          <i>"If the footer wasn't very busy it wouldn't look very professional, so I made sure to add five columns of tiny text and sometimes pointless verbiage."</i> - me
+      <div class="col col-2 span_1_of_5">
+        <div class="tertiary-link">
+          <h4>Other Links</h4>
+          <ul>
+            <li><a href="/" rel="nofollow">Back to Front</a></li>
+            <li><a href="https://github.com/gatewaynode" rel="external" title="Some stuff I'm working on in Github.">Gatewaynode on Github</a></li>
+            <li><a href="https://www.reddit.com/user/gatewaynode" rel="external" title="The closest thing to a social media presence I have.">Gatewaynode on Reddit</a></li>
+            <li><a href="/sitemap.xml">XML Sitemap</a></li>
+            <li><a href="/robots.txt" title="Why am I linking to my robots.txt file?  Indeed.">Robot Feed</a></li>
+          </ul>
         </div>
       </div>
-      <div class="col span_1_of_5">
-        <div class="quote notme">
-          <i>“Arguing with anonymous strangers on the Internet is a sucker's game because they almost always turn out to be—or to be indistinguishable from—self-righteous sixteen-year-olds possessing infinite amounts of free time.”</i> - Neal Stephenson, Cryptonomicon .
+      <div class="col col-3 span_1_of_5">
+        <div class="rotate-image"><img src="/static/images/gear-145315.svg"></div>
+      </div>
+      <div class="col col-4 span_1_of_5">
+        <div class="footer disclosure">
+          <p>
+            <b>Powered By:</b> This site is powered by <a href="https://github.com/gatewaynode/rocket-gatewaynode-com" rel="external">a custom implementation</a> of <a href="https://rocket.rs/" rel="external">Rocket</a> and then statically mirrored to S3, the source can be found on Github.
+          </p>
+          <p>
+            <b>Managed By:</b> Content is stored in PostgreSQL managed through <a href="https://github.com/gatewaynode/nautilus" rel="external">a small custom CLI CMS</a> built on <a href="https://diesel.rs/" rel="external">Diesel</a> also on Github.
+          </p>
         </div>
+      </div>
+      <div class="col col-5 span_1_of_5">
+        <b>&copy; 2020 Gatewaynode</b><br><br>
       </div>
     </div>
   </body>

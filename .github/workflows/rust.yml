@@ -14,6 +14,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build
+      with:
+          toolchain: nightly
+          override: true
       run: cargo build --verbose
     - name: Run tests
       run: cargo test --verbose

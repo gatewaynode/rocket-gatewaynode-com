@@ -1,23 +1,27 @@
 {% extends "base" %}
 
 {% block content %}
-<div class="articles-list back">
-  <h2>All the articles summarized in one page because, why not?</h2>
-  {% for post in posts %}
-    <div class="article id-{{ post.id }} loop-{{ loop.index % 2 }}">
-      <div class="title">
-        <h3>
-          <a href="/post/{{ post.id }}" title="Link to full post content">{{ post.title }}</a>
-        </h3>
-      </div>
-      <div class="time">DateTime: {{ post.time }}</div>
-      <div class="summary">{{ post.summary }}</div>
-      <div class="tags">Tags: {{post.tags }}</div>
-    </div>
+<div id="content-table"></div>
+<script>
+  document.getElementById("primary-column").classList.remove("span_2_of_3");
+  document.getElementById("primary-column").classList.add("span_3_of_3");
+</script>
+<script type="text/javascript" src="/static/js/tabulator.min.js"></script>
+<script>
+var posts_table = [
+  {% for post in posts %}{ "title": "<a href='/post/{{ post.id }}'>{{ post.title }}</a>", "time": "{{ post.time | truncate(length=10, end='') }}", "summary": "{{ post.summary }}", "tags": "{{ post.tags }}" },
   {% endfor %}
-</div>
+];
+
+var table = new Tabulator("#content-table", {
+ 	data:posts_table,
+ 	layout:"fitColumns",
+ 	columns:[
+	 	{title:"Title", field:"title", formatter:"html", headerFilter:true},
+    {title:"Summary", field:"summary", headerFilter:true},
+	 	{title:"Date", field:"time", width:120, hozAlign:"center", headerFilter:true},
+	 	{title:"Tags", field:"tags", width:250, hozAlign:"center", headerFilter:true},
+ 	],
+});
+</script>
 {% endblock content %}
-{% block right_sidebar %}
-Mouse hover or touch to make the gear spin.
-<div class="rotate-image"><img src="/static/images/gear-145315.svg"></div>
-{% endblock right_sidebar %}

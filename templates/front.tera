@@ -1,5 +1,4 @@
 {% extends "base" %}
-
 {% block content %}
 <div class="articles-list front">
   {% for post in posts %}
@@ -11,9 +10,19 @@
       </div>
       <div class="time">TS: {{ post.time }}</div>
       <div class="body">{{ post.body }}</div>
+      <a href="/post/{{ post.id }}#commento">
+        <div class="comments">
+          <h4>Comments<h4>
+          <div class="prompt-thing">
+            <img src="/static/images/terminal_prompt_generic.svg"><img class="blinky" src="/static/images/terminal_cursor.svg">
+          </div>
+          </div>
+        </a>
     </div>
-    <div class="bottom-flourish"></div>
   {% endfor %}
+  <div class="list-end posts front">
+    <a href="/posts" title="All posts are indexed and searchable here."><p>Older posts can be found in the content index.</p></a>
+  </div>
 </div>
 {% endblock content %}
 {% block right_sidebar %}
@@ -25,13 +34,13 @@
 </ul>
 <h2>Specific Thingies</h2>
 <ul>
-{% for link in thingy_links | reverse %}
+{% for link in thingy_links %}
   <li><a href="{{ link.url }}" title="{{ link.title }}">{{ link.text }}</a></li>
 {% endfor %}
 </ul>
 <h2>Recent Tutorial Grinding</h2>
 <ul>
-{% for link in tut_links | reverse %}
+{% for link in tut_links %}
   <li><a href="{{ link.url }}" title="{{ link.title }}">{{ link.text }}</a></li>
 {% endfor %}
 </ul>
