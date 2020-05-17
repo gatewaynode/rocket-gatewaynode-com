@@ -8,18 +8,17 @@
     <div class="body">{{ body }}</div>
     <div class="comments">
       <h4>Comments</h4>
-      <div class="disclaimer">
-        This blog ain't ready for dirty, dirty user input yet.  Feel free to
-        comment on the subreddit, I'll get around to reading it.
-      </div>
-      <div class="reddit-link">
-        <a href="{{ comment_url }}" title="Linked subreddit">Goto Reddit</a>
-      </div>
-      <div class="bottom-flourish"></div>
+      <noscript>
+        <i>Commenting is powered by https://commento.io which requires javascript to work.  If you are seeing this your browser has either javascript turned off or an extension is blocking this javascript from loading.</i>
+      </noscript>
+      <div id="commento"></div>
+      <script defer src="https://cdn.commento.io/js/commento.js" data-css-override="/static/css/comments.css"></script>
     </div>
   </div>
 {% endblock content %}
 {% block right_sidebar %}
-Mouse hover or touch to make the gear spin.
-<div class="rotate-image"><img src="/static/images/gear-145315.svg"></div>
+<h3>Article Summary</h3>
+<div class="article-summary">{{ summary }}</div>
+<h3>Articles Tagged Similarly</h3>
+<div class="similar-articles">Loading...</div>
 {% endblock right_sidebar %}
