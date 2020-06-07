@@ -40,6 +40,16 @@ struct LinkContentList {
     links: Vec<Link>,
 }
 
+#[derive(Serialize, Deserialize, Debug)]
+struct AllContent {
+    front: Vec<Post>,
+    links: Vec<Link>,
+    rust: Vec<Post>,
+    python: Vec<Post>,
+    bash: Vec<Post>,
+    all: Vec<Post>,
+}
+
 fn main() {
     let allowed_origins = AllowedOrigins::some_exact(&["https://commento.io", "http://localhost:8000","http://127.0.0.1:8000"]);
 
@@ -66,7 +76,8 @@ fn main() {
             list_python_posts,
             list_bash_posts,
             generate_sitemap,
-            let_the_robots_free
+            let_the_robots_free,
+            fiction
         ])
         .mount("/static", StaticFiles::from(concat!(env!("CARGO_MANIFEST_DIR"), "/static")))
         .launch();
@@ -74,7 +85,7 @@ fn main() {
 
 #[get("/")]
 fn index() -> Template {
-    let all_posts_raw = read_some_posts(10);
+    let all_posts_raw = read_posts_by_filter_limit(String::from("front"), 10); //read_some_posts(10);
     let regular_links_raw = read_links_by_filter_limit(String::from("regular"), 10);
     let thingy_links_raw = read_links_by_filter_limit(String::from("thingy"), 10);
     let tut_links_raw = read_links_by_filter_limit(String::from("tut"), 10);
@@ -92,6 +103,14 @@ fn index() -> Template {
 #[get("/favicon.ico")]
 fn favicon() -> Redirect {
     Redirect::permanent("/static/images/favicon.ico")
+}
+
+#[get("/fiction")]
+fn fiction() -> Template {
+    let fiction = PostContentList {
+        posts: read_posts_by_filter_limit(String::from("fiction"), 10),
+    };
+    Template::render("fiction", &fiction)
 }
 
 #[get("/posts")]
@@ -148,7 +167,15 @@ fn generate_sitemap() -> Template {
     let all_posts = PostContentList{
         posts: read_all_posts(),
     };
-    Template::render("sitemap", &all_posts)
+    let everything = AllContent {
+        front: read_some_posts(10),
+        links: read_all_links(),
+        rust:  read_posts_by_filter_limit(String::from("rust"), 999),
+        python: read_posts_by_filter_limit(String::from("python"), 999),
+        bash: read_posts_by_filter_limit(String::from("bash"), 999),
+        all: read_all_posts(),
+    };
+    Template::render("sitemap", &everything)
 }
 
 #[get("/robots.txt")]

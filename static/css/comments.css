@@ -1,0 +1,29 @@
+:root {
+  --main-foreground-color: #07de67;
+  --main-background-color: #0A0A0A;
+  --link-unvisited-color: #F7F708;
+  --link-visited-color: #0047b3;
+  --secondary-foreground-color: #D0D0D0;
+  --background-shading-light: rgba(0, 0, 0, .2);
+  --background-shading-dark: rgba(0, 0, 0, .5);
+}
+
+#commento {
+  color: var(--main-foreground-color);
+  background-color: var(--main-background-color);
+}
+
+.comments .commento-root textarea {
+  color: var(--main-foreground-color);
+  background-color: var(--main-background-color);
+  border: 1px dashed green;
+}
+
+.comments .commento-root-font {
+  font-family: Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;
+}
+
+.comments #commento-submit-button-root {
+  background: green
+  color: var(--main-background-color);
+}

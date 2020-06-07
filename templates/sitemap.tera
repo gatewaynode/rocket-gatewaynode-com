@@ -5,44 +5,37 @@
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://gatewaynode.com/</loc>
-    <lastmod>"{{ posts[0].time | truncate(length=19, end='') }}-04:00"</lastmod>
+    <lastmod>"{% set lastfrontpost = front | first %}{{ lastfrontpost.time | truncate(length=19, end='')}}-04:00"</lastmod>
     <priority>1.00</priority>
-    <changefreq>daily</changefreq>
   </url>
   <url>
     <loc>https://gatewaynode.com/posts.html</loc>
-    <lastmod>"{{ posts[0].time | truncate(length=19, end='') }}-04:00"</lastmod>
+    <lastmod>"{% set lastpostpost = all | last %}{{ lastpostpost.time | truncate(length=19, end='')}}-04:00"</lastmod>
     <priority>0.80</priority>
-    <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://gatewaynode.com/links.html</loc>
-    <lastmod>"{{ posts[0].time | truncate(length=19, end='') }}-04:00"</lastmod>
+    <lastmod>"{% set lastlink = links | last %}{{ lastlink.time | truncate(length=19, end='')}}-04:00"</lastmod>
     <priority>0.80</priority>
-    <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://gatewaynode.com/rust.html</loc>
-    <lastmod>"{{ posts[0].time | truncate(length=19, end='') }}-04:00"</lastmod>
+    <lastmod>"{% set lastrustpost = rust | first %}{{ lastrustpost.time | truncate(length=19, end='')}}-04:00"</lastmod>
     <priority>0.80</priority>
-    <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://gatewaynode.com/python.html</loc>
-    <lastmod>"{{ posts[0].time | truncate(length=19, end='') }}-04:00"</lastmod>
+    <lastmod>"{% set lastpythonpost = python | first %}{{ lastpythonpost.time | truncate(length=19, end='')}}-04:00"</lastmod>
     <priority>0.80</priority>
-    <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://gatewaynode.com/bash.html</loc>
-    <lastmod>"{{ posts[0].time | truncate(length=19, end='') }}-04:00"</lastmod>
+    <lastmod>"{% set lastbashpost = python | first %}{{ lastbashpost.time | truncate(length=19, end='')}}-04:00"</lastmod>
     <priority>0.80</priority>
-    <changefreq>weekly</changefreq>
   </url>
-{% for post in posts %}  <url>
-    <loc>https://gatewaynode.com/post/{{ post.id }}.html</loc>
-    <lastmod>"{{ post.time | truncate(length=19, end='') }}-04:00"</lastmod>
+{% for post in all %}  <url>
+    <loc>https://gatewaynode.com/post/{{post.id}}.html</loc>
+    <lastmod>"{{ post.time | truncate(length=19, end='')}}-04:00"</lastmod>
     <priority>0.64</priority>
-    <changefreq>monthly</changefreq>
-  </url>{% endfor %}
-</urlset>
+  </url>
+{% endfor %}</urlset>

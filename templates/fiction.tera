@@ -1,0 +1,31 @@
+{% extends "base" %}
+
+{% block content %}
+<div class="intro"><h2>Do you want to read a story?</h2></div>
+<div class="articles-list topics">
+  {% for post in posts %}
+    <div class="article fiction id-{{ post.id }} loop-{{ loop.index }}">
+      <div class="title">
+        <h3>
+          <a href="/post/{{ post.id }}">{{ post.title }}</a><a name="anchor-{{ post.id }}"></a>
+        </h3>
+      </div>
+      <div class="time">TS: {{ post.time }}</div>
+      <div class="tags">Tags: {{ post.tags }}</div>
+      <div class="body">{{ post.body }}</div>
+      <div class="bottom-flourish"></div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock content %}
+{% block right_sidebar %}
+<div class="topics-sidebar">
+  <h2> Bit's and Pieces</h2>
+    <dl>
+      {% for post in posts %}
+        <dt><a href="#anchor-{{ post.id }}">{{ post.title | truncate(length=40) }}</a></dt>
+        <dd><i>{{ post.summary }}</a></dd>
+      {% endfor %}
+    </dl>
+</div>
+{% endblock right_sidebar %}
