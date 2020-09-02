@@ -309,6 +309,9 @@ body .hljs-name {
 .code-wrapper .hljs-subst {
   color: #886de8;
 }
+body pre {
+  margin-bottom: 1em;
+}
 
 /*--------------------------- Special Effects --------------------------------*/
 

@@ -15,6 +15,11 @@ use rocket_gatewaynode_com::models::{Post, Link};
 // use rocket_cors;
 use rocket_cors::{AllowedHeaders, AllowedOrigins, Error};
 
+mod n4_draft;
+use self::n4_draft::MDContent;
+// mod n4_draft::{MDContent};
+// use rocket_gatewaynode_com::n4_draft::{MDContent};
+
 #[macro_use] extern crate rocket;
 #[macro_use] extern crate rocket_cors;
 #[macro_use] extern crate serde_derive;
@@ -33,6 +38,11 @@ struct GeneralContentList {
 #[derive(Serialize, Deserialize, Debug)]
 struct PostContentList {
     posts: Vec<Post>,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+struct MarkdownContentList {
+    posts: Vec<MDContent>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -77,7 +87,9 @@ fn main() {
             list_bash_posts,
             generate_sitemap,
             let_the_robots_free,
-            fiction
+            fiction,
+            testing,
+            post_export
         ])
         .mount("/static", StaticFiles::from(concat!(env!("CARGO_MANIFEST_DIR"), "/static")))
         .launch();
@@ -184,4 +196,20 @@ fn let_the_robots_free() -> String {
 Allow: *
 
 Sitemap: https://gatewaynode.com/sitemap.xml")
+}
+
+#[get("/testing")]
+fn testing() -> Template {
+    let markdown_posts = MarkdownContentList {
+        posts: n4_draft::read_dir("/home/anon/Documents/gatewaynode_notes/website/blog"),
+    };
+    Template::render("testing", &markdown_posts)
+}
+
+#[get("/export.txt")]
+fn post_export() -> Template {
+    let all_posts = PostContentList {
+        posts: read_all_posts(),
+    };
+    Template::render("export", &all_posts)
 }
