@@ -16,7 +16,8 @@ use rocket_gatewaynode_com::models::{Post, Link};
 use rocket_cors::{AllowedHeaders, AllowedOrigins, Error};
 
 mod n4_draft;
-use self::n4_draft::MDContent;
+use self::n4_draft::{MDContent, CSSContent, JSONContent, PageContent};
+use std::collections::HashMap;
 // mod n4_draft::{MDContent};
 // use rocket_gatewaynode_com::n4_draft::{MDContent};
 
@@ -43,6 +44,11 @@ struct PostContentList {
 #[derive(Serialize, Deserialize, Debug)]
 struct MarkdownContentList {
     posts: Vec<MDContent>,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+struct PageContentList {
+    components: Vec<PageContent>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -200,9 +206,20 @@ Sitemap: https://gatewaynode.com/sitemap.xml")
 
 #[get("/testing")]
 fn testing() -> Template {
-    let markdown_posts = MarkdownContentList {
-        posts: n4_draft::read_dir("/home/anon/Documents/gatewaynode_notes/website/blog"),
+    let mut pages: HashMap<String, PageContent> = n4_draft::read_full_dir("/home/anon/Documents/gatewaynode_notes/website/blog");
+    // println!("{:?}", pages);
+    // let markdown_posts = MarkdownContentList {
+    //     posts: n4_draft::read_md_dir("/home/anon/Documents/gatewaynode_notes/website/blog"),
+    // };
+    let mut contents: Vec<PageContent> = Vec::new();
+    for (_key, value) in pages.drain() {
+        contents.push(value);
     };
+
+    let markdown_posts = PageContentList {
+        components: contents,
+    };
+    println!("{:?}", &markdown_posts);
     Template::render("testing", &markdown_posts)
 }
 

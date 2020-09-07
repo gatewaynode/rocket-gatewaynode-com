@@ -1,18 +1,24 @@
 {% extends "base" %}
 
 {% block content %}
-<div class="intro"><h2>Shiny new blog posts with new data backend.</h2></div>
-<div class="articles-list topics">
-{% for post in posts %}
+<div class="articles-list front">
+{% for post in components| reverse %}
     <div class="article loop-{{ loop.index }}">
       <div class="title">
-        <h3>
-          <a href="/">{{ post.title }}</a><a name="anchor-{{ loop.index }}"></a>
-        </h3>
+        <h2>
+          <a href="/">{{ post.markdown.title }}</a><a name="anchor-{{ loop.index }}"></a>
+        </h2>
       </div>
-      <div class="time">TS: {{ post.created }}</div>
-      <div class="body">{{ post.body }}</div>
-      <div class="bottom-flourish"></div>
+      <div class="time">TS: {{ post.markdown.created }}</div>
+      <div class="body">{{ post.markdown.body }}</div>
+      <a href="/blog/1#commento">
+        <div class="comments">
+          <h4>Comments<h4>
+          <div class="prompt-thing">
+            <img src="/static/images/terminal_prompt_generic.svg"><img class="blinky" src="/static/images/terminal_cursor.svg">
+          </div>
+        </div>
+      </a>
     </div>
   {% endfor %}
 </div>
