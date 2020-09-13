@@ -1,0 +1,15 @@
+{% extends "base" %}
+
+{% block content %}
+{# <div class="article">
+  <div class="title">
+    <h2>
+      <a href="/">{{ markdown.title }}</a>
+    </h2>
+  </div>
+  <div class="time">TS: {{ markdown.created }}</div>
+  <div class="body">{{ markdown.body }}</div>
+</div> #}
+Rendered!
+{% endblock content %}
+

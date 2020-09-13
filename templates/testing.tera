@@ -2,11 +2,11 @@
 
 {% block content %}
 <div class="articles-list front">
-{% for post in components| reverse %}
+{% for post in components | reverse %}
     <div class="article loop-{{ loop.index }}">
       <div class="title">
         <h2>
-          <a href="/">{{ post.markdown.title }}</a><a name="anchor-{{ loop.index }}"></a>
+          <a href="/blog/{{ post.markdown.title }}">{{ post.markdown.title }}</a><a name="anchor-{{ loop.index }}"></a>
         </h2>
       </div>
       <div class="time">TS: {{ post.markdown.created }}</div>

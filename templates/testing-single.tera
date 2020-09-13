@@ -1,0 +1,23 @@
+{% extends "base" %}
+
+{% block content %}
+  <div class="article-page back">
+    <div class="title"><h2>{{ markdown.title }}</h2></div>
+    <div class="time">TS: {{ markdown.created }}</div>
+    <div class="body">{{ markdown.body }}</div>
+    <div class="comments">
+      <h4>Comments</h4>
+      <noscript>
+        <i>Commenting is powered by https://commento.io which requires javascript to work.  If you are seeing this your browser has either javascript turned off or an extension is blocking this javascript from loading.</i>
+      </noscript>
+      <div id="commento"></div>
+      <script defer src="https://cdn.commento.io/js/commento.js" data-css-override="/static/css/comments.css"></script>
+    </div>
+  </div>
+{% endblock content %}
+{% block right_sidebar %}
+<h3>Article Summary</h3>
+<div class="article-summary">No summary</div>
+<h3>Articles Tagged Similarly</h3>
+<div class="similar-articles">Loading... (not really)</div>
+{% endblock right_sidebar %}

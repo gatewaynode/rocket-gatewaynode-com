@@ -8,6 +8,8 @@ extern crate tera;
 use rocket_contrib::templates::Template;
 use rocket_contrib::serve::StaticFiles;
 use rocket::response::Redirect;
+use rocket::response::content;
+use rocket::http::Status;
 use rocket::http::Method;
 use rocket::{get, routes};
 use rocket_gatewaynode_com::*;
@@ -18,6 +20,7 @@ use rocket_cors::{AllowedHeaders, AllowedOrigins, Error};
 mod n4_draft;
 use self::n4_draft::{MDContent, CSSContent, JSONContent, PageContent};
 use std::collections::HashMap;
+use std::path::Path;
 // mod n4_draft::{MDContent};
 // use rocket_gatewaynode_com::n4_draft::{MDContent};
 
@@ -95,9 +98,12 @@ fn main() {
             let_the_robots_free,
             fiction,
             testing,
+            single_page_testing,
+            single_blog_post_render,
             post_export
         ])
         .mount("/static", StaticFiles::from(concat!(env!("CARGO_MANIFEST_DIR"), "/static")))
+        .register(catchers![not_found])
         .launch();
 }
 
@@ -206,21 +212,39 @@ Sitemap: https://gatewaynode.com/sitemap.xml")
 
 #[get("/testing")]
 fn testing() -> Template {
-    let mut pages: HashMap<String, PageContent> = n4_draft::read_full_dir("/home/anon/Documents/gatewaynode_notes/website/blog");
-    // println!("{:?}", pages);
-    // let markdown_posts = MarkdownContentList {
-    //     posts: n4_draft::read_md_dir("/home/anon/Documents/gatewaynode_notes/website/blog"),
-    // };
-    let mut contents: Vec<PageContent> = Vec::new();
-    for (_key, value) in pages.drain() {
-        contents.push(value);
+    let pages: Vec<PageContent> = n4_draft::read_full_dir_sorted("/home/anon/Documents/gatewaynode_notes/website/blog");
+
+    // Seems a bit unecessary, but this works 
+    let markdown_posts = PageContentList {
+        components: pages,
     };
 
-    let markdown_posts = PageContentList {
-        components: contents,
-    };
-    println!("{:?}", &markdown_posts);
     Template::render("testing", &markdown_posts)
+}
+
+#[get("/testing-single")]
+fn single_page_testing() -> Template {
+    let this_path = Path::new("/home/anon/Documents/gatewaynode_notes/website/blog/Moving the blog to to a text file based backend.md");
+
+    if this_path.exists() && this_path.extension().unwrap() == "md" {
+        let page_content: PageContent = n4_draft::read_single_page(this_path);
+        Template::render("testing-single", &page_content)
+    } else {
+        Template::render("testing-single", "Error") // Change this to route a 404
+    }  
+}
+
+#[get("/blog/<title>")]
+fn single_blog_post_render(title: String) -> Template {
+    let base_blog_path: String = String::from("/home/anon/Documents/gatewaynode_notes/website/blog/");
+    let full_path: String = format!("{}.md", base_blog_path + &title);
+    let this_path = Path::new(&full_path);
+    if this_path.exists() {
+        let page_content: PageContent = n4_draft::read_single_page(&this_path);
+        Template::render("testing-single", &page_content)
+    } else {
+        custom_404(title)
+    }
 }
 
 #[get("/export.txt")]
@@ -229,4 +253,20 @@ fn post_export() -> Template {
         posts: read_all_posts(),
     };
     Template::render("export", &all_posts)
+}
+
+#[catch(404)]
+fn not_found(req: &rocket::Request) -> content::Html<String> {
+    content::Html(format!("<p>Sorry, but '{}' is not a valid path!</p>",
+            req.uri()))
+}
+
+// @BUG This doesn't really work, looks like I'll need a custom response at some point in time
+// Ref: https://stackoverflow.com/questions/54865824/return-json-with-an-http-status-other-than-200-in-rocket
+// Ref: https://api.rocket.rs/v0.4/rocket/response/struct.ResponseBuilder.html
+fn custom_404(para_fail: String) -> Template {
+    let not_found = Status::NotFound;
+    let mut results = HashMap::new();
+    results.insert("error".to_string(), para_fail,);
+    Template::render("404", results)
 }
