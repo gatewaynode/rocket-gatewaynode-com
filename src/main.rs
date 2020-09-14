@@ -18,7 +18,7 @@ use rocket_gatewaynode_com::models::{Post, Link};
 use rocket_cors::{AllowedHeaders, AllowedOrigins, Error};
 
 mod n4_draft;
-use self::n4_draft::{MDContent, CSSContent, JSONContent, PageContent};
+use self::n4_draft::{MDContent, CSSContent, JSONContent, PageContent, DirContent};
 use std::collections::HashMap;
 use std::path::Path;
 // mod n4_draft::{MDContent};
@@ -52,6 +52,11 @@ struct MarkdownContentList {
 #[derive(Serialize, Deserialize, Debug)]
 struct PageContentList {
     components: Vec<PageContent>,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+struct DirContentList {
+    files_in_dir: Vec<DirContent>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -98,7 +103,6 @@ fn main() {
             let_the_robots_free,
             fiction,
             testing,
-            single_page_testing,
             single_blog_post_render,
             post_export
         ])
@@ -107,6 +111,10 @@ fn main() {
         .launch();
 }
 
+
+// Migration TODOS
+// * Main menu context
+// * Sidebar something
 #[get("/")]
 fn index() -> Template {
     let all_posts_raw = read_posts_by_filter_limit(String::from("front"), 10); //read_some_posts(10);
@@ -188,18 +196,10 @@ fn list_bash_posts() -> Template {
 
 #[get("/sitemap.xml")]
 fn generate_sitemap() -> Template {
-    let all_posts = PostContentList{
-        posts: read_all_posts(),
+    let renderable_files = DirContentList {
+        files_in_dir: n4_draft::read_md_dirs("/home/anon/Documents/gatewaynode_notes/website", ""),
     };
-    let everything = AllContent {
-        front: read_some_posts(10),
-        links: read_all_links(),
-        rust:  read_posts_by_filter_limit(String::from("rust"), 999),
-        python: read_posts_by_filter_limit(String::from("python"), 999),
-        bash: read_posts_by_filter_limit(String::from("bash"), 999),
-        all: read_all_posts(),
-    };
-    Template::render("sitemap", &everything)
+    Template::render("sitemap", &renderable_files)
 }
 
 #[get("/robots.txt")]
@@ -220,18 +220,6 @@ fn testing() -> Template {
     };
 
     Template::render("testing", &markdown_posts)
-}
-
-#[get("/testing-single")]
-fn single_page_testing() -> Template {
-    let this_path = Path::new("/home/anon/Documents/gatewaynode_notes/website/blog/Moving the blog to to a text file based backend.md");
-
-    if this_path.exists() && this_path.extension().unwrap() == "md" {
-        let page_content: PageContent = n4_draft::read_single_page(this_path);
-        Template::render("testing-single", &page_content)
-    } else {
-        Template::render("testing-single", "Error") // Change this to route a 404
-    }  
 }
 
 #[get("/blog/<title>")]

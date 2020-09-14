@@ -24,6 +24,13 @@ pub struct MDContent {
     body: String,
 }
 
+#[derive(Serialize, Deserialize, Debug)]
+pub struct DirContent {
+    modified: NaiveDateTime,
+    title: String,
+    relative_path: String,
+}
+
 impl Default for MDContent {
     fn default() -> Self {
         MDContent { 
@@ -51,23 +58,55 @@ pub struct CSSContent {
     payload: String,
 }
 
-pub fn read_md_dir(dir: &str) -> Vec<MDContent> {
+pub fn read_md_dirs(dir: &str, rel_path: &str) -> Vec<DirContent> {
     let paths = fs::read_dir(dir).unwrap();
     
-    let mut contents: Vec<MDContent> = Vec::new();
+    let mut contents: Vec<DirContent> = Vec::new();
 
     for item in paths {
         let this_path = &item.unwrap().path();
-        if this_path.extension().unwrap() == "md" {
-            let new_content = MDContent {
-                created: read_file_creation_time(&this_path),
+        if !this_path.is_dir() && this_path.extension().unwrap() == "md" {
+            let new_content = DirContent {
+                modified: read_file_modified_time(&this_path),
                 title: String::from(this_path.file_stem().unwrap().to_string_lossy()),
-                body: read_markdown_from_path(&this_path),
+                relative_path: String::from(rel_path),
             };
             contents.push(new_content);
+        } else if this_path.is_dir() {
+            let dir_name: String = String::from(this_path.file_stem().unwrap().to_string_lossy());
+            let new_rel_path: String = format!("{}/{}", rel_path, dir_name);
+            contents.append(&mut read_md_dirs(&this_path.to_string_lossy(), &new_rel_path));
         }
     }
-    contents.sort_unstable_by_key(|x| x.created);
+    // contents.sort_unstable_by_key(|x| x.modified);  // Not sure if this needs to be sorted this way now
+    println!("{:?}", contents);
+    contents
+}
+
+// COPY PASTA ^^^
+// @TODO Modify this to create a suitable main menu
+pub fn generate_main_menu(dir: &str, rel_path: &str) -> Vec<DirContent> {
+    let paths = fs::read_dir(dir).unwrap();
+    
+    let mut contents: Vec<DirContent> = Vec::new();
+
+    for item in paths {
+        let this_path = &item.unwrap().path();
+        if !this_path.is_dir() && this_path.extension().unwrap() == "md" {
+            let new_content = DirContent {
+                modified: read_file_modified_time(&this_path),
+                title: String::from(this_path.file_stem().unwrap().to_string_lossy()),
+                relative_path: String::from(rel_path),
+            };
+            contents.push(new_content);
+        } else if this_path.is_dir() {
+            let dir_name: String = String::from(this_path.file_stem().unwrap().to_string_lossy());
+            let new_rel_path: String = format!("{}/{}", rel_path, dir_name);
+            contents.append(&mut read_md_dirs(&this_path.to_string_lossy(), &new_rel_path));
+        }
+    }
+    // contents.sort_unstable_by_key(|x| x.modified);  // Not sure if this needs to be sorted this way now
+    println!("{:?}", contents);
     contents
 }
 
@@ -151,6 +190,18 @@ pub fn read_file_creation_time(path: &std::path::Path) -> NaiveDateTime {
     let metadata = fs::metadata(path).expect("Not found");
 
     let _ = match metadata.created() {
+        Err(why) => panic!("Couldn't get file metadata: {}", why),
+        Ok(_time) => {
+            let _temp_time = _time.duration_since(UNIX_EPOCH).unwrap().as_secs() as i64;
+            return NaiveDateTime::from_timestamp(_temp_time, 0)
+        }
+    };
+}
+
+pub fn read_file_modified_time(path: &std::path::Path) -> NaiveDateTime {
+    let metadata = fs::metadata(path).expect("Not found");
+
+    let _ = match metadata.modified() {
         Err(why) => panic!("Couldn't get file metadata: {}", why),
         Ok(_time) => {
             let _temp_time = _time.duration_since(UNIX_EPOCH).unwrap().as_secs() as i64;
